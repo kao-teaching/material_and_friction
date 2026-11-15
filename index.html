@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>ENGINEERING CAR LAB V3</title>
+<style>
+:root{--bg:#091321;--panel:#122036;--panel2:#172942;--line:#30445f;--txt:#edf5ff;--muted:#a6b7ce;--cyan:#48d9e8;--green:#5bd69c;--yellow:#ffd166;--red:#ff7777;--purple:#b49aff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#203958 0,transparent 35%),var(--bg);color:var(--txt);font:15px/1.55 Inter,"Noto Sans Thai",Tahoma,sans-serif}
+header{padding:26px max(18px,calc((100% - 1240px)/2));border-bottom:1px solid var(--line);background:#091321eF}.eyebrow{color:var(--cyan);font-size:.78rem;font-weight:800;letter-spacing:.15em}h1{font-size:clamp(1.8rem,4vw,3rem);margin:4px 0}.sub{color:var(--muted);max-width:850px;margin:0}.tag{display:inline-block;border:1px solid #386078;color:#a8edf5;padding:6px 11px;border-radius:30px;font-size:.78rem;margin-top:12px}
+main{max-width:1240px;margin:22px auto;padding:0 16px 50px}.section{margin:25px 0 12px;font-size:1.15rem}.section b{color:var(--cyan);margin-right:9px}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:13px}.card{grid-column:span 12;background:linear-gradient(145deg,var(--panel),#101b2c);border:1px solid var(--line);border-radius:15px;padding:16px;min-width:0}.s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}
+h3{margin:0 0 10px;font-size:1rem}label{display:block;color:#dce8f7;font-weight:650;margin:10px 0 5px;font-size:.9rem}select,input,button{font:inherit}select,input[type=number]{width:100%;background:#0b1626;color:var(--txt);border:1px solid #3b526f;border-radius:9px;padding:9px}input[type=range]{width:100%;accent-color:var(--cyan)}input:disabled,select:disabled{opacity:.6}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.muted,.hint{color:var(--muted);font-size:.82rem}.value{color:var(--yellow);font-weight:800}.info{background:#10283b;border-left:3px solid var(--cyan);padding:10px 12px;border-radius:8px;color:#d0e1f2;font-size:.85rem;margin-top:10px}.warn{border-left-color:var(--yellow);background:#30291b}.danger{color:var(--red)}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}button{border:0;border-radius:9px;padding:10px 16px;font-weight:800;cursor:pointer}.primary{background:var(--cyan);color:#06202a}.secondary{background:#293e59;color:var(--txt);border:1px solid #49617f}.dangerbtn{background:#512e37;color:#ffdce0;border:1px solid #80434d}button:disabled{opacity:.45;cursor:not-allowed}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.kpi{background:#0a1727;border:1px solid #2a405c;border-radius:10px;padding:10px;min-width:0}.kpi small{display:block;color:var(--muted);font-size:.76rem}.kpi strong{font-size:1.3rem;display:block;overflow-wrap:anywhere}.kpi em{font-style:normal;color:var(--cyan);font-size:.75rem}
+.pill{display:inline-block;border-radius:20px;padding:5px 10px;background:#203c50;color:#9cecf4;font-size:.8rem;font-weight:800}.pill.good{background:#173c31;color:#8cf0bd}.pill.bad{background:#492727;color:#ffaaaa}.pill.mid{background:#3b351f;color:#ffe19a}
+.trackbox{background:#081321;border:1px solid var(--line);border-radius:11px;padding:8px}canvas{display:block;width:100%;height:230px;border-radius:8px;background:#091523}#trackCanvas{height:300px}
+table{width:100%;border-collapse:collapse;font-size:.82rem;min-width:760px}th,td{padding:8px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{color:#a9bdd5}td{color:#e4eef9}.tablewrap{overflow:auto}.bar{height:9px;background:#26384e;border-radius:9px;overflow:hidden;margin-top:10px}.bar span{height:100%;display:block;background:linear-gradient(90deg,var(--cyan),var(--green));width:0}
+.teacher{border:1px dashed #7b6bb3;background:#1d1b35}.hidden{display:none!important}.footer{max-width:1240px;margin:auto;padding:0 16px 28px;color:var(--muted);font-size:.8rem}
+@media(max-width:850px){.s3,.s4,.s5,.s6,.s7,.s8{grid-column:span 6}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.s3,.s4,.s5,.s6,.s7,.s8{grid-column:span 12}header{padding:20px 16px}main{padding:0 11px 35px}.card{padding:13px}#trackCanvas{height:230px}canvas{height:190px}}
+</style></head>
+<body>
+<header><div class="eyebrow">STEM • DESIGN • TEST • IMPROVE</div><h1>ENGINEERING CAR LAB <span style="color:var(--cyan)">V3</span></h1><p class="sub">ห้องทดลองเสมือนสำหรับออกแบบรถ ทดลองระบบส่งกำลัง มอเตอร์ แรงยึดเกาะ และสนาม 3 รูปแบบ พร้อมบันทึกและเปรียบเทียบผลการทดลอง</p><span class="tag">EDUCATIONAL PHYSICS MODEL • VERSION 3</span></header>
+<main>
+<h2 class="section"><b>01</b> ออกแบบรถและระบบส่งกำลัง</h2>
+<div class="grid">
+<section class="card s4"><h3>⚙️ ชุดเกียร์และมอเตอร์</h3>
+<label for="gear">อัตราทดเกียร์ (นิยาม: รอบมอเตอร์ / รอบล้อ)</label><select id="gear"><option value=".5">0.5 : 1 — เน้นความเร็วรอบล้อ</option><option value="1" selected>1 : 1 — สมดุล</option><option value="2">2 : 1 — เน้นแรงบิด</option><option value="3">3 : 1 — แรงบิดสูง</option></select>
+<div class="kpis" style="grid-template-columns:repeat(2,1fr);margin-top:10px"><div class="kpi"><small>Motor RPM</small><strong id="motorRpm">0</strong></div><div class="kpi"><small>Wheel RPM</small><strong id="wheelRpm">0</strong></div><div class="kpi"><small>Wheel Torque</small><strong id="wheelTorque">0.000</strong><em>N·m</em></div><div class="kpi"><small>แรงขับ ณ จุดนั้น</small><strong id="driveForce">0.00</strong><em>N</em></div><div class="kpi"><small>ความเร็วสูงสุดเชิงทฤษฎี</small><strong id="theorySpeed">0.00</strong><em>m/s (no-load)</em></div></div>
+<div class="info">อัตราทดสูงช่วยเพิ่มแรงบิดที่ล้อ แต่ลดรอบล้อสูงสุด แบบจำลองใช้กราฟแรงบิดมอเตอร์ลดลงเชิงเส้นเมื่อ RPM เพิ่มขึ้น</div></section>
+<section class="card s4"><h3>🛞 ล้อและตัวถัง</h3>
+<label for="wheel">รูปแบบหน้ายาง</label><select id="wheel"><option value="smooth">ล้อเรียบ</option><option value="tread" selected>ล้อมีดอกยาง</option></select>
+<label for="material">วัสดุตัวถัง</label><select id="material"><option value="PLA">PLA</option><option value="PETG">PETG</option></select>
+<label for="infill">Infill <span class="value" id="infillVal">40%</span></label><input id="infill" type="range" min="15" max="100" step="5" value="40">
+<label for="extraMass">มวลอุปกรณ์/ของบรรทุกเพิ่มเติม <span class="value" id="extraVal">0 g</span></label><input id="extraMass" type="range" min="0" max="100" step="5" value="0">
+<div class="info">มวลตัวถังเป็นค่าประมาณเชิงเส้นเพื่อการเรียนรู้ ไม่ใช่การคำนวณมวลชิ้นงานพิมพ์ 3D จริง</div></section>
+<section class="card s4"><h3>⚖️ น้ำหนักและข้อจำกัด</h3>
+<div id="massItems" class="muted">โครงฐาน 55 g • ตัวถัง — g • ล้อ 48 g • เกียร์/เพลา 35 g • ไฟฟ้า 90 g</div>
+<div class="kpis" style="margin-top:10px"><div class="kpi"><small>มวลรวม</small><strong id="totalMass">—</strong><em>g</em></div><div class="kpi"><small>เหลือได้</small><strong id="remaining">—</strong><em>g</em></div><div class="kpi"><small>สัดส่วนเพดาน</small><strong id="massPct">—</strong><em>%</em></div><div class="kpi"><small>สถานะ</small><strong id="massStatus">—</strong></div></div>
+<div class="bar"><span id="massBar"></span></div>
+<label for="massLimit">เพดานน้ำหนัก (g)</label><input id="massLimit" type="number" min="100" max="1000" step="5" value="300">
+<div class="info warn">ระบบแยกสถานะ ผ่าน / ใกล้เพดาน / เกินเพดาน และจะไม่เริ่มทดลองเมื่อมวลเกินข้อกำหนด</div></section>
+</div>
+<h2 class="section"><b>02</b> กำหนดสนามและพารามิเตอร์</h2>
+<div class="grid">
+<section class="card s4"><h3>สนามทดลอง</h3><label for="surface">พื้นผิว</label><select id="surface"><option value="smooth">พื้นเรียบ</option><option value="dust">พื้นฝุ่น</option><option value="grass">พื้นหญ้า</option></select>
+<label for="course">รูปแบบสนาม</label><select id="course"><option value="flat">ทางเรียบ 10 m</option><option value="slope">ทางลาด 30° ระยะตามแนวลาด 5 m</option><option value="mixed">สนามผสม: ทางเรียบ 5 m + ทางลาด 5 m</option></select>
+<div class="info">ค่าความยึดเกาะ μ และแรงต้านการหมุน Crr เป็นพารามิเตอร์สมมติสำหรับเปรียบเทียบ ไม่ใช่ค่ามาตรฐานตายตัวของพื้นผิวจริง</div></section>
+<section class="card s8"><h3>ภาพจำลองสนาม — พิกัดเดียวกับตำแหน่งรถ</h3><div class="trackbox"><canvas id="trackCanvas" width="1000" height="300"></canvas></div><div id="trackInfo" class="hint">สนามพร้อมแล้ว</div></section>
+<section class="card s12 teacher hidden" id="teacherPanel"><h3>🧑‍🏫 โหมดครู — ปรับค่าพารามิเตอร์ของแบบจำลอง</h3><div class="grid">
+<div class="s3"><label for="stallTorque">Stall torque (N·m)</label><input id="stallTorque" type="number" min=".01" max=".3" step=".005" value=".06"></div>
+<div class="s3"><label for="noLoadRpm">No-load RPM</label><input id="noLoadRpm" type="number" min="1000" max="30000" step="500" value="9000"></div>
+<div class="s3"><label for="efficiency">ประสิทธิภาพเกียร์</label><input id="efficiency" type="number" min=".3" max="1" step=".01" value=".82"></div>
+<div class="s3"><label for="gripFactor">ตัวคูณแรงยึดเกาะล้อหยัก</label><input id="gripFactor" type="number" min=".8" max="1.5" step=".01" value="1.12"></div>
+<div class="s3"><label for="muSmooth">μ พื้นเรียบ</label><input id="muSmooth" type="number" min=".1" max="1.5" step=".01" value=".72"></div>
+<div class="s3"><label for="muDust">μ พื้นฝุ่น</label><input id="muDust" type="number" min=".1" max="1.5" step=".01" value=".42"></div>
+<div class="s3"><label for="muGrass">μ พื้นหญ้า</label><input id="muGrass" type="number" min=".1" max="1.5" step=".01" value=".58"></div>
+<div class="s3"><label for="rrFactor">ตัวคูณ Crr</label><input id="rrFactor" type="number" min=".5" max="2" step=".05" value="1"></div>
+</div><p class="hint">ค่าที่แก้ไขมีผลกับการทดลองครั้งถัดไปเท่านั้น</p></section>
+</div>
+<div class="row" style="margin-top:12px"><label style="margin:0;flex:0 0 auto" for="mode">โหมดใช้งาน</label><select id="mode" style="max-width:220px"><option value="student">โหมดนักเรียน</option><option value="teacher">โหมดครู</option></select><span class="muted">โหมดครูเปิดแผงปรับพารามิเตอร์และแสดงคำอธิบายเชิงลึก</span></div>
+<h2 class="section"><b>03</b> ทดลองและจำลองการเคลื่อนที่</h2>
+<div class="grid">
+<section class="card s8"><div class="row"><h3 style="margin:0">สถานะการทดลอง</h3><span id="status" class="pill mid">พร้อมทดลอง</span></div>
+<div class="kpis" style="margin-top:12px"><div class="kpi"><small>ความเร็วรถ</small><strong id="speed">0.00</strong><em>m/s</em></div><div class="kpi"><small>เวลาจำลอง</small><strong id="time">0.00</strong><em>s</em></div><div class="kpi"><small>ระยะทาง</small><strong id="distance">0.00</strong><em>m</em></div><div class="kpi"><small>อัตราเร่ง</small><strong id="accel">0.00</strong><em>m/s²</em></div>
+<div class="kpi"><small>Slip Ratio</small><strong id="slip">0.0</strong><em>%</em></div><div class="kpi"><small>Traction Utilization</small><strong id="util">0.0</strong><em>%</em></div><div class="kpi"><small>แรงยึดเกาะสูงสุด</small><strong id="grip">0.00</strong><em>N</em></div><div class="kpi"><small>ความเร็วสูงสุด</small><strong id="maxSpeed">0.00</strong><em>m/s</em></div></div>
+<div class="actions"><button class="primary" id="start">▶ เริ่มทดลอง</button><button class="secondary" id="reset">↺ รีเซ็ต</button><button class="secondary" id="save">＋ บันทึกผล</button></div><div id="explain" class="info">เริ่มทดลองเพื่อดูผลของอัตราทดเกียร์ แรงขับ และแรงยึดเกาะ</div></section>
+<section class="card s4"><h3>แผนภาพแรง (Free-body diagram)</h3><canvas id="forceCanvas" width="500" height="280"></canvas><div class="hint">ลูกศรแสดงแรงตามแนวพื้น/ทางลาดโดยประมาณ ปรับตามสถานะขณะทดลอง</div><div id="theory" class="info">แรงตามแนวลาด = mg sin θ • แรงปฏิกิริยาตั้งฉาก N = mg cos θ</div></section>
+</div>
+<h2 class="section"><b>04</b> วิเคราะห์และเปรียบเทียบผล</h2>
+<div class="grid">
+<section class="card s6"><h3>กราฟความเร็ว–เวลา</h3><canvas id="speedChart" width="800" height="260"></canvas></section>
+<section class="card s6"><h3>กราฟระยะทาง–เวลา</h3><canvas id="distanceChart" width="800" height="260"></canvas></section>
+<section class="card s6"><h3>กราฟแรงขับ–แรงต้าน</h3><canvas id="forceChart" width="800" height="260"></canvas></section>
+<section class="card s6"><h3>สรุปการทดลองล่าสุด</h3><div id="summary" class="info">ยังไม่มีผลการทดลอง</div></section>
+<section class="card s12"><div class="row"><h3 style="margin:0">ตารางเปรียบเทียบผลการทดลอง</h3><div class="actions" style="margin:0"><button class="secondary" id="csv">ส่งออก CSV</button><button class="dangerbtn" id="clear">ล้างประวัติ</button></div></div><div class="tablewrap" style="margin-top:10px"><table><thead><tr><th>#</th><th>เกียร์</th><th>ล้อ</th><th>พื้น/สนาม</th><th>มวล (g)</th><th>เวลา (s)</th><th>ระยะ (m)</th><th>Vmax (m/s)</th><th>Slip สูงสุด (%)</th><th>ผล</th></tr></thead><tbody id="history"><tr><td colspan="10" class="muted">ยังไม่มีข้อมูล — กดบันทึกผลหลังจบการทดลอง</td></tr></tbody></table></div></section>
+<section class="card s12"><h3>Engineering Insight — คำถามชวนคิด</h3><div class="grid"><div class="s4 info"><b>Predict</b><br>เกียร์อัตราทดสูงขึ้นจะมีผลต่อแรงบิดและความเร็วปลายอย่างไร?</div><div class="s4 info"><b>Test & Analyze</b><br>พื้นผิวและลักษณะล้อส่งผลต่อ Traction utilization และ Slip ratio อย่างไร?</div><div class="s4 info"><b>Improve</b><br>ออกแบบรถให้ผ่านสนามโดยไม่เกินเพดานน้ำหนักได้อย่างไร?</div></div></section>
+</div>
+</main><footer class="footer">ENGINEERING CAR LAB V3 • แบบจำลองเพื่อการศึกษา ไม่ใช่ซอฟต์แวร์จำลองพลศาสตร์รถยนต์เต็มรูปแบบ ค่ามอเตอร์ แรงเสียดทาน และมวลเป็นสมมติฐาน ต้องทดสอบเทียบกับรถต้นแบบจริงก่อนใช้ตัดสินผลงาน</footer>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const base={chassis:55,body:38,wheels:48,gears:35,electrics:90};
+const surfaces={smooth:{name:'พื้นเรียบ',mu:.72,rr:.025},dust:{name:'พื้นฝุ่น',mu:.42,rr:.055},grass:{name:'พื้นหญ้า',mu:.58,rr:.09}};
+let running=false,raf=0,latest=null,samples=[],history=[],lastState=null;
+const g=9.81,radius=.032,eff=()=>clamp(val('efficiency'),.3,1);
+function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
+function val(id){return Number($(id).value)||0}
+function massBody(){return base.body*(val('infill')/40)*($('material').value==='PETG'?1.08:1)}
+function config(){
+ const gear=val('gear'),surface={...surfaces[$('surface').value]};
+ if($('mode').value==='teacher'){surface.mu=val($('surface').value==='smooth'?'muSmooth':$('surface').value==='dust'?'muDust':'muGrass');surface.rr*=clamp(val('rrFactor'),.5,2)}
+ const tread=$('wheel').value==='tread',mu=surface.mu*(tread?clamp(val('gripFactor'),.8,1.5):.92);
+ const rr=surface.rr*(tread?1.08:.92),mass=(base.chassis+massBody()+base.wheels+base.gears+base.electrics+val('extraMass'))/1000;
+ return {gear,surface,mu,rr,mass,massG:mass*1000,limit:val('massLimit'),tread,stall:val('stallTorque'),noLoad:val('noLoadRpm')};
+}
+function motorAt(wheelOmega,c){const motorRpm=wheelOmega*60/(2*Math.PI)*c.gear;const frac=clamp(motorRpm/c.noLoad,0,1);return {motorRpm,torque:c.stall*(1-frac)}}
+function updateDesign(){
+ $('infillVal').textContent=val('infill')+'%';$('extraVal').textContent=val('extraMass')+' g';
+ const c=config(),remain=c.limit-c.massG,pct=c.massG/c.limit*100;
+ $('massItems').textContent=`โครงฐาน ${base.chassis} g • ตัวถัง ${massBody().toFixed(1)} g • ล้อ ${base.wheels} g • เกียร์/เพลา ${base.gears} g • ไฟฟ้า ${base.electrics} g • เพิ่มเติม ${val('extraMass')} g`;
+ $('totalMass').textContent=c.massG.toFixed(1);$('remaining').textContent=remain.toFixed(1);$('massPct').textContent=pct.toFixed(1);
+ const state=remain<0?'เกิน':pct>=90?'ใกล้เพดาน':'ผ่าน';$('massStatus').textContent=state;$('massStatus').style.color=remain<0?'var(--red)':pct>=90?'var(--yellow)':'var(--green)';
+ $('massBar').style.width=clamp(pct,0,100)+'%';$('massBar').style.background=remain<0?'var(--red)':pct>=90?'var(--yellow)':'linear-gradient(90deg,var(--cyan),var(--green))';
+ if(!running)updateMotorDisplay(c,0,0);
+ drawTrack(0);drawForce(lastState||{theta:0,drive:0,rolling:0,gravity:0,normal:c.mass*g});
+}
+function updateMotorDisplay(c,v,slip){
+ const omega=(v*(1+slip))/radius,m=motorAt(omega,c),wheelRpm=omega*60/(2*Math.PI);
+ const wt=m.torque*c.gear*eff(),drive=wt/radius;
+ $('motorRpm').textContent=m.motorRpm.toFixed(0);$('wheelRpm').textContent=wheelRpm.toFixed(0);$('wheelTorque').textContent=wt.toFixed(3);$('driveForce').textContent=drive.toFixed(2);$('theorySpeed').textContent=(c.noLoad/c.gear*2*Math.PI*radius/60).toFixed(2);
+}
+function target(){return $('course').value==='flat'?10: $('course').value==='slope'?5:10}
+function routePoint(x){
+ const course=$('course').value, W=1000,H=300, left=85,right=900,baseY=235,run=470,rise=run*Math.tan(Math.PI/6);
+ if(course==='flat')return {x:left+(right-left)*clamp(x/10,0,1),y:baseY,angle:0};
+ if(course==='slope'){const p=clamp(x/5,0,1);return {x:left+p*run,y:baseY-p*rise,angle:-Math.PI/6}}
+ if(x<=5)return {x:left+(right-left-run)*x/5,y:baseY,angle:0};
+ const p=clamp((x-5)/5,0,1);return {x:right-run+p*run,y:baseY-p*rise,angle:-Math.PI/6};
+}
+function drawTrack(x=0){
+ const c=$('trackCanvas'),ctx=c.getContext('2d');if(!ctx)return;const W=c.width,H=c.height;ctx.clearRect(0,0,W,H);
+ const grass=$('surface').value==='grass',dust=$('surface').value==='dust';ctx.fillStyle=grass?'#244632':dust?'#51452f':'#17283b';ctx.fillRect(0,0,W,H);
+ ctx.strokeStyle=grass?'#6da875':dust?'#b29a68':'#60748b';ctx.lineWidth=28;ctx.lineCap='round';ctx.beginPath();
+ const a=routePoint(0),b=routePoint(target());ctx.moveTo(a.x,a.y);if($('course').value==='mixed'){const mid=routePoint(5);ctx.lineTo(mid.x,mid.y)}ctx.lineTo(b.x,b.y);ctx.stroke();
+ ctx.strokeStyle='#e5edf6';ctx.lineWidth=2;ctx.setLineDash([9,8]);ctx.beginPath();ctx.moveTo(a.x,a.y);if($('course').value==='mixed'){let m=routePoint(5);ctx.lineTo(m.x,m.y)}ctx.lineTo(b.x,b.y);ctx.stroke();ctx.setLineDash([]);
+ ctx.fillStyle='#fff';ctx.font='17px sans-serif';ctx.fillText('START',35,275);ctx.fillText('FINISH',850,40);
+ if($('course').value!=='flat'){ctx.fillStyle='#ffe19a';ctx.fillText('30°',520,125)}
+ const p=routePoint(x);ctx.save();ctx.translate(p.x,p.y-12);ctx.rotate(p.angle);ctx.fillStyle='#48d9e8';ctx.fillRect(-32,-17,64,22);ctx.fillStyle='#b8f5f8';ctx.fillRect(-14,-29,28,14);ctx.fillStyle='#111';ctx.beginPath();ctx.arc(-20,7,8,0,7);ctx.arc(20,7,8,0,7);ctx.fill();ctx.restore();
+ $('trackInfo').textContent=`${surfaces[$('surface').value].name} • ${$('course').selectedOptions[0].text} • ระยะทางตามเส้นทาง ${target()} m`;
+}
+function drawForce(s){
+ const c=$('forceCanvas'),ctx=c.getContext('2d');if(!ctx)return;ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle='#091523';ctx.fillRect(0,0,c.width,c.height);
+ const slope=s.theta>0;ctx.save();ctx.translate(250,155);ctx.rotate(-s.theta);ctx.fillStyle='#48d9e8';ctx.fillRect(-48,-38,96,38);ctx.fillStyle='#d8e7f6';ctx.beginPath();ctx.arc(-28,0,11,0,7);ctx.arc(28,0,11,0,7);ctx.fill();ctx.restore();
+ ctx.strokeStyle='#9eb0c8';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(25,190);ctx.lineTo(475,190-(slope?260*Math.tan(s.theta):0));ctx.stroke();
+ const origin={x:250,y:145};function arrow(dx,dy,color,label){ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(origin.x,origin.y);ctx.lineTo(origin.x+dx,origin.y+dy);ctx.stroke();const a=Math.atan2(dy,dx);ctx.beginPath();ctx.moveTo(origin.x+dx,origin.y+dy);ctx.lineTo(origin.x+dx-12*Math.cos(a-.45),origin.y+dy-12*Math.sin(a-.45));ctx.lineTo(origin.x+dx-12*Math.cos(a+.45),origin.y+dy-12*Math.sin(a+.45));ctx.fill();ctx.font='14px sans-serif';ctx.fillText(label,origin.x+dx+5,origin.y+dy+4)}
+ arrow(105,0,'#5bd69c',`ขับ ${s.drive.toFixed(1)}N`);arrow(-75,0,'#ffd166',`ต้าน ${s.rolling.toFixed(1)}N`);arrow(0,-75,'#b49aff','N');arrow(0,80,'#ff7777','mg');
+}
+function drawLine(canvasId,data,key,label,color){
+ const c=$(canvasId),ctx=c.getContext('2d'),w=c.width,h=c.height;ctx.clearRect(0,0,w,h);ctx.fillStyle='#091523';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#2a3b54';ctx.lineWidth=1;
+ for(let i=0;i<5;i++){let y=25+i*(h-60)/4;ctx.beginPath();ctx.moveTo(48,y);ctx.lineTo(w-15,y);ctx.stroke()}
+ ctx.fillStyle='#a6b7ce';ctx.font='15px sans-serif';ctx.fillText(label,12,18);
+ if(!data.length){ctx.fillText('เริ่มทดลองเพื่อแสดงกราฟ',w/2-100,h/2);return}
+ let maxT=Math.max(.1,data[data.length-1].t),maxY=Math.max(.1,...data.map(d=>d[key]))*1.15;
+ ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();data.forEach((d,i)=>{let px=48+d.t/maxT*(w-70),py=h-30-d[key]/maxY*(h-60);i?ctx.lineTo(px,py):ctx.moveTo(px,py)});ctx.stroke();
+}
+function drawAll(){drawLine('speedChart',samples,'v','ความเร็ว (m/s)','#48d9e8');drawLine('distanceChart',samples,'x','ระยะทาง (m)','#5bd69c');drawLine('forceChart',samples,'drive','แรง (N)','#ffd166')}
+function ui(s){
+ $('speed').textContent=s.v.toFixed(2);$('time').textContent=s.t.toFixed(2);$('distance').textContent=s.x.toFixed(2);$('accel').textContent=s.a.toFixed(2);
+ $('slip').textContent=(s.sr*100).toFixed(1);$('util').textContent=(s.util*100).toFixed(1);$('grip').textContent=s.grip.toFixed(2);$('maxSpeed').textContent=s.maxV.toFixed(2);
+ updateMotorDisplay(s.c,s.v,s.sr);drawTrack(s.x);drawForce(s);lastState=s;
+ $('status').textContent=s.slipping?'ล้อกำลังลื่นไถล':s.stalled?'หยุดบนทางลาด':'กำลังเคลื่อนที่';$('status').className='pill '+(s.slipping||s.stalled?'bad':'good');
+ if(s.slipping)$('explain').textContent=`แรงขับต้องการ ${s.drive.toFixed(2)} N แต่แรงยึดเกาะสูงสุด ${s.grip.toFixed(2)} N • Traction utilization ${(s.util*100).toFixed(0)}% • Slip ratio ${(s.sr*100).toFixed(1)}%`;
+ else if(s.stalled)$('explain').textContent='แรงขับที่ส่งถึงพื้นไม่พอเอาชนะแรงโน้มถ่วงตามแนวลาดรวมกับแรงต้านการหมุน รถจึงหยุด';
+ else $('explain').textContent=`แรงขับ ${s.drive.toFixed(2)} N • แรงต้านรวม ${(s.rolling+s.gravity).toFixed(2)} N • อัตราเร่ง ${s.a.toFixed(2)} m/s²`;
+}
+function reset(){
+ lockInputs(false);running=false;if(raf)cancelAnimationFrame(raf);raf=0;samples=[];latest=null;
+ ['speed','time','distance','accel','slip','util','grip','maxSpeed'].forEach(id=>$(id).textContent='0.00');
+ $('status').textContent='พร้อมทดลอง';$('status').className='pill mid';$('start').disabled=false;$('summary').textContent='ยังไม่มีผลการทดลอง';$('explain').textContent='เริ่มทดลองเพื่อดูผลของอัตราทดเกียร์ แรงขับ และแรงยึดเกาะ';
+ drawTrack(0);drawAll();updateDesign();
+}
+function run(){
+ if(running)return;const c=config();if(c.massG>c.limit){$('status').textContent='น้ำหนักเกิน';$('status').className='pill bad';$('explain').textContent=`มวล ${c.massG.toFixed(1)} g เกินเพดาน ${c.limit} g กรุณาปรับ Infill หรือมวลอุปกรณ์`;return}
+ reset();running=true;lockInputs(true);$('start').disabled=true;$('status').textContent='กำลังทดลอง';$('status').className='pill good';
+ const dt=.02,distGoal=target();let t=0,x=0,v=0,omega=0,sr=0,maxV=0,maxSR=0,stallT=0,last=performance.now(),acc=0,stalled=false;
+ function step(now){if(!running)return;acc=Math.min(.15,acc+(now-last)/1000);last=now;
+ while(acc>=dt){
+  const course=$('course').value,theta=(course==='slope'||(course==='mixed'&&x>=5))?Math.PI/6:0;
+  const normal=c.mass*g*Math.cos(theta),grip=c.mu*normal,rolling=c.rr*normal,gravity=c.mass*g*Math.sin(theta);
+  // Motor torque falls linearly with motor RPM; gearing trades wheel speed for torque.
+  const motor=motorAt(omega,c),wheelTorque=motor.torque*c.gear*eff(),drive=wheelTorque/radius;
+  const traction=Math.min(drive,grip),util=grip>0?drive/grip:0;
+  // Excess wheel torque accelerates wheel spin; tire-road slip is computed from r*omega vs vehicle speed.
+  const wheelInertia=.00022,excess=Math.max(0,drive-grip);
+  const wheelAlpha=(drive-traction)*radius/Math.max(.00005,wheelInertia);
+  if(excess>0)omega+=wheelAlpha*dt;else {const targetOmega=v/radius;omega+=(targetOmega-omega)*Math.min(1,dt*7)}
+  omega=Math.max(v/radius,omega);
+  const wheelSpeed=radius*omega;
+  sr=wheelSpeed>v+.02?clamp((wheelSpeed-v)/Math.max(wheelSpeed,v,.05),0,.99):0;
+  const actualTraction=traction*(1-.25*sr);
+  const net=actualTraction-rolling-gravity,a=net/c.mass;
+  if(v<=0&&a<=0){v=0;stallT+=dt}else{v=Math.max(0,Math.min(8,v+a*dt));if(v>0)stallT=0}
+  x+=v*dt;t+=dt;maxV=Math.max(maxV,v);maxSR=Math.max(maxSR,sr);stalled=stallT>1.5;
+  if(samples.length===0||t-samples[samples.length-1].t>=.1)samples.push({t,v,x,drive:actualTraction,drag:rolling+gravity});
+  acc-=dt;
+ }
+ const theta=($('course').value==='slope'||($('course').value==='mixed'&&x>=5))?Math.PI/6:0;
+ const normal=c.mass*g*Math.cos(theta),grip=c.mu*normal,rolling=c.rr*normal,gravity=c.mass*g*Math.sin(theta),m=motorAt(omega,c);
+ const drive=m.torque*c.gear*eff()/radius,slipping=sr>.03;
+ const state={t,x,v,a:(samples.length>1?(v-samples[samples.length-2].v)/Math.max(.001,t-samples[samples.length-2].t):0),sr,util:grip?drive/grip:0,grip,rolling,gravity,drive,c,theta,slipping,stalled,maxV};
+ ui(state);latest={...state,maxSR,target:distGoal,passed:x>=distGoal,reason:stalled?'แรงขับไม่พอ':slipping?'เกิดการลื่นไถล':x>=distGoal?'ถึงเส้นชัย':'หมดเวลา'};
+ drawAll();
+ if(x>=distGoal||t>=60||stalled){finish(latest);return}raf=requestAnimationFrame(step)}
+ raf=requestAnimationFrame(step);
+}
+function finish(r){
+ running=false;lockInputs(false);$('start').disabled=false;const passed=r.passed;
+ $('status').textContent=passed?'ถึงเส้นชัย':r.stalled?'หยุดกลางทาง':'หมดเวลาจำลอง';$('status').className='pill '+(passed?'good':'bad');
+ $('summary').innerHTML=`<b>${passed?'ผ่านสนามจำลอง':'ไม่ผ่านสนามจำลอง'}</b><br>สาเหตุ: ${r.reason}<br>เวลา ${r.t.toFixed(2)} s • ระยะ ${r.x.toFixed(2)} / ${r.target} m<br>ความเร็วสูงสุด ${r.maxV.toFixed(2)} m/s • Slip ratio สูงสุด ${(r.maxSR*100).toFixed(1)}%<br>มวล ${r.c.massG.toFixed(1)} / ${r.c.limit} g<br>เกียร์ ${r.c.gear}:1 • ${r.c.tread?'ล้อดอกยาง':'ล้อเรียบ'} • ${r.c.surface.name}`;
+ $('explain').textContent=passed?'รถถึงเส้นชัยแล้ว สามารถบันทึกผลเพื่อเปรียบเทียบกับการทดลองอื่น':r.stalled?'รถหยุดเพราะแรงขับไม่พอเอาชนะแรงโน้มถ่วงและแรงต้านบนทางลาด':'การทดลองสิ้นสุดก่อนถึงเส้นชัย ตรวจสอบความเร็วรอบมอเตอร์และการเลือกอัตราทด';
+}
+function saveResult(){
+ if(!latest){$('explain').textContent='ยังไม่มีผลการทดลองให้บันทึก กรุณาทดลองให้จบก่อน';return}
+ const r=latest;history.push({gear:r.c.gear,wheel:r.c.tread?'ดอกยาง':'เรียบ',surface:r.c.surface.name,course:$('course').selectedOptions[0].text,mass:r.c.massG,time:r.t,distance:r.x,vmax:r.maxV,slip:r.maxSR*100,result:r.passed?'ผ่าน':'ไม่ผ่าน'});
+ renderHistory();
+}
+function renderHistory(){
+ const body=$('history');if(!history.length){body.innerHTML='<tr><td colspan="10" class="muted">ยังไม่มีข้อมูล</td></tr>';return}
+ body.innerHTML=history.map((r,i)=>`<tr><td>${i+1}</td><td>${r.gear}:1</td><td>${r.wheel}</td><td>${r.surface} / ${r.course}</td><td>${r.mass.toFixed(1)}</td><td>${r.time.toFixed(2)}</td><td>${r.distance.toFixed(2)}</td><td>${r.vmax.toFixed(2)}</td><td>${r.slip.toFixed(1)}</td><td>${r.result}</td></tr>`).join('');
+}
+function exportCSV(){
+ if(!history.length){alert('ยังไม่มีผลการทดลอง');return}
+ const cols=['ครั้ง','อัตราทดเกียร์','ล้อ','พื้นผิว','สนาม','มวล_g','เวลา_s','ระยะ_m','ความเร็วสูงสุด_m_s','Slipสูงสุด_pct','ผล'];
+ const rows=history.map((r,i)=>[i+1,r.gear+':1',r.wheel,r.surface,r.course,r.mass.toFixed(1),r.time.toFixed(2),r.distance.toFixed(2),r.vmax.toFixed(2),r.slip.toFixed(1),r.result]);
+ const csv='\uFEFF'+[cols,...rows].map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\r\n');
+ const a=document.createElement('a'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.href=url;a.download='engineering-car-lab-results.csv';a.click();URL.revokeObjectURL(url);
+}
+function lockInputs(lock){['gear','wheel','material','infill','extraMass','massLimit','surface','course','mode','stallTorque','noLoadRpm','efficiency','gripFactor','muSmooth','muDust','muGrass','rrFactor'].forEach(id=>$(id).disabled=lock)}
+$('start').addEventListener('click',run);$('reset').addEventListener('click',reset);$('save').addEventListener('click',saveResult);$('csv').addEventListener('click',exportCSV);$('clear').addEventListener('click',()=>{history=[];renderHistory()});
+$('mode').addEventListener('change',()=>{$('teacherPanel').classList.toggle('hidden',$('mode').value!=='teacher');updateDesign()});
+['gear','wheel','material','infill','extraMass','massLimit','surface','course','stallTorque','noLoadRpm','efficiency','gripFactor','muSmooth','muDust','muGrass','rrFactor'].forEach(id=>$(id).addEventListener('input',()=>{if(running)return;updateDesign();drawAll()}));
+$('course').addEventListener('change',()=>{if(!running)reset()});$('surface').addEventListener('change',()=>{if(!running)reset()});
+window.addEventListener('resize',()=>{drawTrack(latest?.x||0);drawAll();drawForce(lastState||{theta:0,drive:0,rolling:0,gravity:0,normal:0})});
+updateDesign();reset();
+</script></body></html>
